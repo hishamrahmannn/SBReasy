@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SBR Simplified – ACCA SBR quick notes, quizzes and study planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef3f1;--card:#ffffff;--ink:#10251e;--muted:#54675f;--brand:#1d6b57;--brand-ink:#ffffff;
+  --soft:#dcebe5;--red:#c8443a;--gold:#b7791f;--goldbg:#fbeecb;--redbg:#fbe0dd;--line:#d2ded8;
+  --good:#166534;--goodbg:#d8f3e2;--bad:#9b2c2c;--badbg:#fbe0dd;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1a16;--card:#15251f;--ink:#e6f1ec;--muted:#9db3aa;--brand:#4cc2a1;--brand-ink:#08211a;
+    --soft:#1c3129;--red:#ff7b6f;--gold:#f0bb45;--goldbg:#33290f;--redbg:#3a1d1a;--line:#2a4238;
+    --good:#7ee2a1;--goodbg:#173a26;--bad:#ff9a92;--badbg:#3a1d1a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1a16;--card:#15251f;--ink:#e6f1ec;--muted:#9db3aa;--brand:#4cc2a1;--brand-ink:#08211a;
+  --soft:#1c3129;--red:#ff7b6f;--gold:#f0bb45;--goldbg:#33290f;--redbg:#3a1d1a;--line:#2a4238;
+  --good:#7ee2a1;--goodbg:#173a26;--bad:#ff9a92;--badbg:#3a1d1a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:"Bricolage Grotesque","Figtree",system-ui,sans-serif;line-height:1.15;margin:0}
+a{color:var(--brand)}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+
+/* header */
+.top{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line)}
+.topin{display:flex;align-items:center;gap:14px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-size:19px;white-space:nowrap}
+.logo{background:var(--brand);color:var(--brand-ink);font-weight:800;font-size:14px;padding:5px 8px;border-radius:6px;letter-spacing:.5px}
+nav{display:flex;gap:2px;overflow-x:auto;flex:1;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{padding:7px 12px;border-radius:999px;text-decoration:none;color:var(--muted);font-weight:600;font-size:14.5px;white-space:nowrap}
+nav a.on{background:var(--soft);color:var(--brand)}
+#theme{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;width:36px;height:36px;font-size:16px;cursor:pointer;flex:none}
+
+main{padding-top:26px;padding-bottom:40px;min-height:70vh}
+.ph{font-size:clamp(28px,5vw,40px);letter-spacing:-.5px}
+.sub{color:var(--muted);margin:8px 0 20px;max-width:60ch}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:14px 0 26px}
+.hero h1{font-size:clamp(40px,8vw,68px);letter-spacing:-1.5px;font-weight:800}
+.lead{font-size:18px;color:var(--muted);margin:14px 0 22px;max-width:46ch}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;background:var(--brand);color:var(--brand-ink);padding:12px 20px;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid var(--brand);cursor:pointer;font:inherit;font-weight:700}
+.btn.ghost{background:transparent;color:var(--brand)}
+.btn.sm{padding:8px 14px;font-size:14px}
+.tacc{background:var(--card);border:1px solid var(--line);border-left:6px double var(--red);border-radius:12px;padding:18px 18px 16px;box-shadow:0 10px 30px rgba(16,37,30,.08)}
+.tt{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;margin-bottom:12px}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--ink)}
+.tgrid>div{padding:10px 10px 12px;display:flex;flex-direction:column;gap:6px;font-size:14.5px}
+.tgrid .tl{border-right:2px solid var(--ink)}
+.tb{margin-top:8px;padding-top:10px;border-top:1px dashed var(--line);font-weight:700;color:var(--brand)}
+.tnote{font-size:12.5px;color:var(--muted);margin-top:6px}
+
+.stats{display:flex;flex-wrap:wrap;gap:10px 28px;padding:14px 0 6px;border-top:1px solid var(--line);margin-top:6px;color:var(--muted)}
+.stats b{color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-size:22px;margin-right:6px}
+
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin:22px 0}
+.tile{display:block;background:var(--card);border:1px solid var(--line);border-left:6px double var(--brand);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink)}
+.tile:hover{border-color:var(--brand)}
+.tile h3{font-size:19px;margin-bottom:4px}
+.tile p{margin:0;color:var(--muted);font-size:14.5px}
+.strip{background:var(--redbg);border-left:6px double var(--red);padding:14px 18px;border-radius:10px;margin-top:8px}
+.strip b{color:var(--red)}
+
+/* standards list */
+.search{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;margin-bottom:12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 13px;border-radius:999px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.chip.on{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.list{display:grid;gap:9px}
+.row{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px 10px 10px;text-decoration:none;color:var(--ink)}
+.row:hover{border-color:var(--brand)}
+.tab{min-width:84px;text-align:center;background:var(--soft);color:var(--brand);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;padding:9px 8px;border-radius:7px;border-right:3px solid var(--red);font-size:15px}
+.rt{flex:1;display:flex;flex-direction:column;line-height:1.3}
+.rt small{color:var(--muted)}
+.tick{color:var(--good);font-weight:800;visibility:hidden}
+.row.rev .tick{visibility:visible}
+.empty{padding:26px;text-align:center;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:10px}
+
+/* standard page */
+.back{display:inline-block;margin-bottom:14px;font-weight:600;text-decoration:none}
+.shead{display:flex;gap:16px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+.shead .tab{font-size:22px;padding:14px 16px;min-width:110px}
+.badge{display:inline-block;background:var(--soft);color:var(--brand);padding:3px 10px;border-radius:999px;font-size:13px;font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-left:6px double var(--brand);border-radius:12px;padding:18px 20px;margin-bottom:18px}
+.card h2{font-size:21px;margin-bottom:10px}
+.pts{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.pts li{padding-left:22px;position:relative}
+.pts li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;background:var(--red);border-radius:2px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 18px}
+.pn{display:flex;justify-content:space-between;gap:10px;margin-top:8px;flex-wrap:wrap}
+.pn a{text-decoration:none;font-weight:600}
+
+/* quiz */
+.qhead{display:flex;justify-content:space-between;color:var(--muted);font-size:14px;margin-bottom:8px}
+.bar{height:8px;background:var(--soft);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brand);width:0;transition:width .3s}
+.quiz h3{font-size:20px;margin:16px 0 12px;line-height:1.3}
+.opts{display:grid;gap:9px}
+.opt{text-align:left;background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--brand)}
+.opt.ok{background:var(--goodbg);border-color:var(--good);color:var(--good);font-weight:600}
+.opt.no{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tagq{display:inline-block;font-size:12.5px;color:var(--muted);margin-bottom:2px}
+.fb{margin-top:14px;display:flex;justify-content:flex-end}
+.result{text-align:center;padding:8px 0}
+.result .big{font-family:"Bricolage Grotesque",sans-serif;font-size:56px;font-weight:800;color:var(--brand)}
+.rev-list{text-align:left;margin:16px 0;display:grid;gap:8px}
+.rev-list div{background:var(--badbg);border-radius:8px;padding:10px 12px;font-size:14.5px}
+.rev-list b{display:block}
+
+/* consolidation */
+details{background:var(--card);border:1px solid var(--line);border-left:6px double var(--brand);border-radius:12px;margin-bottom:10px}
+summary{cursor:pointer;padding:14px 18px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--red);font-size:22px;line-height:1}
+details[open] summary::after{content:"\2212"}
+details .pts{padding:0 18px 16px}
+.formula{background:var(--card);border:1px solid var(--line);border-left:6px double var(--red);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.formula h3{font-size:18px;margin-bottom:8px}
+.formula code{display:block;background:var(--soft);padding:10px 12px;border-radius:8px;margin:6px 0;font-size:14.5px;font-family:inherit;font-weight:600}
+
+/* planner */
+.ctl{display:flex;flex-wrap:wrap;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.ctl label{display:flex;flex-direction:column;font-size:13.5px;color:var(--muted);gap:4px;font-weight:600}
+.ctl input{padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.prog{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.prog .bar{flex:1;height:12px}
+.prog span{font-weight:700;font-size:14px;min-width:96px;text-align:right}
+.wk{font-family:"Bricolage Grotesque",sans-serif;font-size:20px;margin:24px 0 10px}
+.wk.rv{color:var(--red);border-top:3px double var(--red);padding-top:14px}
+.wk small{display:block;font-family:"Figtree",sans-serif;font-size:14px;color:var(--muted);font-weight:500}
+.day{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-bottom:8px;cursor:pointer;align-items:flex-start}
+.day input{width:22px;height:22px;margin-top:3px;accent-color:var(--brand);flex:none}
+.day.done{opacity:.6}
+.day.done .dc strong{text-decoration:line-through}
+.day.today{border:2px solid var(--gold)}
+.dn{min-width:74px;display:flex;flex-direction:column;line-height:1.25}
+.dn small{color:var(--muted)}
+.dc{flex:1;display:flex;flex-direction:column;gap:3px}
+.pb{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;margin-right:6px}
+.pb.L{background:var(--soft);color:var(--brand)}
+.pb.C{background:var(--goldbg);color:var(--gold)}
+.pb.R{background:var(--redbg);color:var(--red)}
+.pb.P{background:var(--ink);color:var(--bg)}
+.txt{color:var(--muted);font-size:14.5px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:3px}
+.tags a{font-size:12.5px;font-weight:700;background:var(--soft);padding:2px 9px;border-radius:6px;text-decoration:none}
+.now{background:var(--gold);color:#fff;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:99px;margin-left:6px}
+
+.foot{border-top:1px solid var(--line);padding-top:18px;padding-bottom:30px;color:var(--muted);font-size:14px}
+.tip{background:var(--goldbg);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:14.5px}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr}
+  .topin{flex-wrap:wrap}
+  nav{order:3;flex-basis:100%}
+  .brand{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap topin">
+    <a class="brand" href="#/home"><span class="logo">SBR</span><b>Simplified</b></a>
+    <nav id="nav" aria-label="Main"></nav>
+    <button id="theme" aria-label="Switch light or dark mode" title="Light / dark">&#9680;</button>
+  </div>
+</header>
+<main class="wrap" id="app"></main>
+<footer class="wrap foot">SBR Simplified is a free study aid by Hisham Rahman, ACCA finalist. Always confirm details against the official ACCA syllabus, examinable documents and IFRS text.</footer>
+
+<script>
+/* ---------- helpers ---------- */
+var mem={};
+var store={
+  get:function(k,d){try{var v=localStorage.getItem(k);if(v!==null)return JSON.parse(v)}catch(e){} return (k in mem)?mem[k]:d},
+  set:function(k,v){mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function sid(c){return c.replace(/[^A-Za-z0-9]/g,"")}
+var app=document.getElementById("app");
+
+/* ---------- STANDARDS DATA ----------
+   [code, name, type, group, [key points], [[question, correct, wrong, wrong], ...]] */
+var S=[
+["CF","Conceptual Framework","Other","Framework",[
+ "Objective: useful information to investors, lenders and other creditors (primary users).",
+ "Fundamental characteristics: relevance (predictive/confirmatory value, materiality) and faithful representation (complete, neutral, free from error).",
+ "Enhancing characteristics: comparability, verifiability, timeliness, understandability.",
+ "Asset = present economic resource controlled as a result of past events. Liability = present obligation to transfer an economic resource as a result of past events.",
+ "Equity = residual interest. Income and expenses = changes in assets/liabilities other than equity contributions/distributions.",
+ "Recognise if relevant and faithfully represented; derecognise when control lost (asset) or obligation ends (liability).",
+ "Measurement: historical cost or current value (fair value, value in use, current cost).",
+ "Profit or loss is the default; OCI only when it improves relevance or faithful representation; recycling normally expected."],
+ [["Which is a fundamental qualitative characteristic?","Relevance","Timeliness","Comparability"],
+  ["A liability is best defined as a...","Present obligation to transfer an economic resource","Possible future payment","Any expected cash outflow"]]],
+
+["IFRS 15","Revenue from Contracts with Customers","IFRS","Revenue",[
+ "Five steps: 1 identify contract, 2 identify performance obligations (POs), 3 transaction price, 4 allocate to POs, 5 recognise revenue when/as PO satisfied.",
+ "Allocate price by relative stand-alone selling prices.",
+ "Over time if: customer consumes benefit as you perform, OR customer controls the asset as it is created, OR no alternative use + enforceable right to payment. Otherwise point in time (control passes).",
+ "Variable consideration: expected value or most likely amount, constrained so a significant reversal is highly unlikely.",
+ "Significant financing component: adjust for time value (practical expedient if gap 1 year or less).",
+ "Principal (controls goods first, records gross) vs agent (records net commission).",
+ "Costs to obtain a contract (incremental) and to fulfil: capitalise if recoverable; amortise.",
+ "Warranties: assurance-type = IAS 37; service-type = separate PO. Licence: right to access = over time; right to use = point in time.",
+ "Contract modification: separate contract if distinct goods added at stand-alone price."],
+ [["Step 4 of IFRS 15 is to...","Allocate the transaction price to performance obligations","Identify the contract","Recognise revenue"],
+  ["An agent recognises revenue as...","Net commission","Full sales value","Cost of goods sold"]]],
+
+["IAS 2","Inventories","IAS","Assets",[
+ "Measure at the lower of cost and net realisable value (NRV).",
+ "Cost = purchase + conversion + other costs to bring to present location and condition.",
+ "Exclude abnormal waste, storage (unless necessary), admin and selling costs.",
+ "Cost formulas: FIFO or weighted average. LIFO is banned.",
+ "Write down to NRV item by item; reverse (up to original cost) if NRV recovers.",
+ "Overhead absorption uses normal capacity."],
+ [["Which cost formula is NOT permitted?","LIFO","FIFO","Weighted average"],
+  ["Inventory is measured at the lower of cost and...","Net realisable value","Replacement cost","Selling price"]]],
+
+["IAS 16","Property, Plant and Equipment","IAS","Assets",[
+ "Initial cost = purchase price + directly attributable costs + estimated dismantling/restoration cost.",
+ "Cost model or revaluation model (applied to the whole class, revalue regularly).",
+ "Depreciate by component over useful life; review residual value and life at least annually.",
+ "Revaluation gain to OCI (revaluation surplus) unless it reverses a previous loss in P&L. Loss first reduces surplus, then P&L.",
+ "Transfer excess depreciation from surplus to retained earnings (permitted).",
+ "Proceeds from selling items produced before the asset is ready go to P&L, not deducted from cost.",
+ "Subsequent costs capitalised only if future benefits improve; repairs expensed."],
+ [["A revaluation increase is normally recognised in...","OCI (revaluation surplus)","Profit or loss","Retained earnings directly"],
+  ["Dismantling costs at initial recognition are...","Included in cost of the asset","Expensed immediately","Ignored until they occur"]]],
+
+["IAS 20","Government Grants","IAS","Assets",[
+ "Recognise only when reasonable assurance that conditions will be met and the grant received.",
+ "Income approach: recognise in P&L over the periods the related costs are expensed.",
+ "Asset-related grants: deduct from asset carrying amount OR show as deferred income.",
+ "Non-monetary grants: at fair value or nominal amount.",
+ "Repayment is a change in estimate."],
+ [["Grants are recognised when there is...","Reasonable assurance of compliance and receipt","A grant application","Cash received only"],
+  ["A grant for an asset may be shown as...","Deferred income or a deduction from cost","Equity reserve","Revenue immediately"]]],
+
+["IAS 23","Borrowing Costs","IAS","Assets",[
+ "Capitalise borrowing costs on qualifying assets (take a substantial time to get ready).",
+ "Specific loans: actual interest less investment income on temporary surplus.",
+ "General loans: weighted average capitalisation rate on expenditure.",
+ "Start: expenditure incurred, borrowing costs incurred and activities under way.",
+ "Suspend during extended interruptions; stop when substantially ready."],
+ [["For general borrowings, capitalise using...","A weighted average capitalisation rate","The lowest interest rate","Base rate"],
+  ["Capitalisation ends when the asset is...","Substantially ready for use or sale","Fully paid for","Insured"]]],
+
+["IAS 36","Impairment of Assets","IAS","Assets",[
+ "Impaired if carrying amount exceeds recoverable amount = higher of fair value less costs of disposal and value in use.",
+ "Test annually: goodwill, indefinite-life intangibles, intangibles not yet in use. Others when indicators exist.",
+ "Cash-generating unit (CGU): smallest group generating independent cash inflows; goodwill allocated to CGUs.",
+ "Allocate impairment loss: goodwill first, then other assets pro rata (not below highest of FVLCD, VIU or zero).",
+ "Reversals allowed (up to what carrying amount would have been) but NEVER for goodwill.",
+ "Partly-owned subsidiary with proportionate NCI: gross up goodwill for testing; the loss recognised is the parent's share only."],
+ [["Recoverable amount is the higher of...","Fair value less costs of disposal and value in use","Cost and NRV","Carrying amount and cost"],
+  ["An impairment loss on goodwill...","Cannot be reversed","Can be reversed within 3 years","Is reversed if value recovers"]]],
+
+["IAS 38","Intangible Assets","IAS","Assets",[
+ "Recognise if identifiable, controlled and expected to give future benefits, and cost is measurable.",
+ "Research: expense. Development: capitalise once all six are shown: probable benefits, intention to complete, resources, ability to use/sell, technical feasibility, reliable measurement (PIRATE).",
+ "Never recognise internally generated goodwill, brands, mastheads, customer lists; also start-up, training, advertising.",
+ "Cost model or revaluation model (only if an active market exists).",
+ "Finite life: amortise. Indefinite life: no amortisation, annual impairment test.",
+ "Acquired in a business combination: recognise separately at fair value."],
+ [["Research expenditure is...","Expensed","Capitalised","Deferred"],
+  ["An internally generated brand is...","Not recognised","Recognised at fair value","Recognised at cost"]]],
+
+["IAS 40","Investment Property","IAS","Assets",[
+ "Property held to earn rentals or for capital appreciation (not own use, not for sale in ordinary course).",
+ "Choose cost model or fair value model (apply to all investment property).",
+ "Fair value model: gains and losses in P&L; no depreciation.",
+ "Mixed use: separate if parts can be sold separately; otherwise investment property only if own use is insignificant.",
+ "Property rented to a group member is owner-occupied (IAS 16) in the consolidated accounts.",
+ "Transfers only when there is evidence of change in use."],
+ [["Under the fair value model, gains go to...","Profit or loss","OCI","Reserves"],
+  ["Property leased to a subsidiary is, in group accounts...","Owner-occupied PPE","Investment property","Inventory"]]],
+
+["IAS 41","Agriculture","IAS","Assets",[
+ "Biological assets: fair value less costs to sell, changes in P&L.",
+ "Agricultural produce: fair value less costs to sell at harvest; then IAS 2 inventory.",
+ "Bearer plants (e.g. fruit trees) are treated under IAS 16, not IAS 41.",
+ "Unconditional grants on biological assets: income when receivable."],
+ [["Biological assets are measured at...","Fair value less costs to sell","Cost","Depreciated cost"],
+  ["Bearer plants are accounted for under...","IAS 16","IAS 41","IAS 2"]]],
+
+["IFRS 5","Non-current Assets Held for Sale","IFRS","Assets",[
+ "Held for sale if carrying amount will be recovered mainly through sale, available now, and sale is highly probable (management committed, actively marketed, expected within 12 months).",
+ "Measure at lower of carrying amount and fair value less costs to sell. Stop depreciation.",
+ "Present separately; do not offset assets and liabilities.",
+ "Discontinued operation: separate major line of business or geographic area, disposed or held for sale.",
+ "Show one amount in P&L for discontinued ops and restate comparatives.",
+ "Subsidiary to be sold with loss of control: classify all its assets and liabilities as held for sale."],
+ [["Held-for-sale assets are measured at...","Lower of carrying amount and FV less costs to sell","Fair value","Cost"],
+  ["Once held for sale, depreciation...","Stops","Continues","Doubles"]]],
+
+["IFRS 16","Leases","IFRS","Assets",[
+ "Lessee: one model. Recognise right-of-use (RoU) asset and lease liability. Exemptions: short-term (12 months or less) and low-value assets (expense).",
+ "Lease liability = PV of future payments at rate implicit in the lease, else incremental borrowing rate.",
+ "RoU asset = liability + payments made at/before start + initial direct costs + restoration cost - incentives.",
+ "Depreciate RoU over the shorter of lease term and useful life. Interest on liability at effective rate.",
+ "Variable payments linked to an index/rate are included; other variable payments are expensed.",
+ "Lessor: finance lease (derecognise asset, recognise receivable) or operating lease (keep asset, rental income).",
+ "Sale and leaseback: if a sale under IFRS 15, seller-lessee derecognises the asset, records RoU based on retained portion, and recognises gain only on rights transferred. If not a sale, treat as a financing.",
+ "Fair value differs from price: adjust the excess as a loan or additional payment."],
+ [["Which lease is exempt from lessee recognition?","Short-term (12 months or less)","Lease of property","Lease over 5 years"],
+  ["Lease liability is initially the...","PV of future lease payments","Total payments undiscounted","Fair value of asset"]]],
+
+["IFRS 13","Fair Value Measurement","IFRS","Assets",[
+ "Fair value = exit price in an orderly transaction between market participants at the measurement date.",
+ "Hierarchy: Level 1 quoted prices for identical items in active markets. Level 2 observable inputs. Level 3 unobservable inputs.",
+ "Use principal market, or most advantageous market if none.",
+ "Non-financial assets: use highest and best use.",
+ "Do not include transaction costs in fair value.",
+ "Techniques: market, income, cost approach.",
+ "Does not apply to IFRS 2, IFRS 16, NRV (IAS 2) and value in use (IAS 36)."],
+ [["Level 1 inputs are...","Quoted prices for identical items in active markets","Unobservable inputs","Estimates by management"],
+  ["Fair value is an...","Exit price","Entry price","Historical cost"]]],
+
+["IAS 37","Provisions, Contingent Liabilities and Contingent Assets","IAS","Liabilities & tax",[
+ "Provision if: present obligation (legal or constructive), probable outflow (more than 50%), reliable estimate.",
+ "Measure at best estimate (expected value for large populations, most likely for single item). Discount if material.",
+ "Contingent liability: disclose unless remote. Contingent asset: disclose if inflow probable; recognise only when virtually certain.",
+ "Onerous contract: unavoidable costs exceed expected benefits, so recognise provision.",
+ "Restructuring: detailed formal plan and announced (valid expectation) by year end.",
+ "Never provide for future operating losses.",
+ "Reimbursement: separate asset only if virtually certain."],
+ [["A contingent asset is recognised when...","Inflow is virtually certain","Inflow is probable","Inflow is possible"],
+  ["Provisions for future operating losses are...","Not allowed","Allowed if probable","Required"]]],
+
+["IAS 12","Income Taxes","IAS","Liabilities & tax",[
+ "Current tax = tax payable on taxable profit.",
+ "Deferred tax = temporary difference x tax rate (enacted or substantively enacted), balance sheet liability method.",
+ "Taxable temporary difference gives deferred tax liability (DTL); deductible gives deferred tax asset (DTA).",
+ "No DTL on initial recognition of goodwill.",
+ "Recognise DTA only if future taxable profit probable; unused losses likewise.",
+ "Tax follows the item: OCI items have tax in OCI, equity items in equity.",
+ "Offset only with legal right and same tax authority.",
+ "Group: deferred tax on fair value adjustments, unrealised profit and undistributed profits (unless parent controls timing and no reversal foreseen).",
+ "Initial recognition exemption does not apply where equal taxable and deductible differences arise (leases, decommissioning)."],
+ [["A taxable temporary difference gives rise to...","A deferred tax liability","A deferred tax asset","Current tax"],
+  ["Deferred tax on initial recognition of goodwill is...","Not recognised","Recognised in equity","Recognised in P&L"]]],
+
+["IAS 19","Employee Benefits","IAS","Liabilities & tax",[
+ "Short-term benefits: expense as service is given; accrue accumulating absences.",
+ "Defined contribution plan: expense the contributions due.",
+ "Defined benefit: net liability = PV of obligation - fair value of plan assets (asset ceiling applies).",
+ "P&L: current service cost, past service cost, settlement gains/losses, net interest (discount rate x net liability).",
+ "OCI (never recycled): remeasurements = actuarial gains/losses, return on plan assets above interest, asset ceiling changes.",
+ "Discount rate: yield on high-quality corporate bonds."],
+ [["Actuarial gains and losses are recognised in...","OCI","Profit or loss","Equity directly"],
+  ["Net interest uses the...","Discount rate x net defined benefit liability","Expected return on assets","Interest on bank loans"]]],
+
+["IFRS 2","Share-based Payment","IFRS","Liabilities & tax",[
+ "Equity-settled: measure at grant-date fair value; expense over vesting period, credit equity; no remeasurement.",
+ "Cash-settled: liability at fair value, remeasured every reporting date until settlement; changes in P&L.",
+ "Non-market vesting conditions (service, profit targets) adjust the number of awards expected to vest.",
+ "Market conditions (share price target) are built into fair value; do not reverse if not met.",
+ "Choice of settlement: if entity has the choice, generally equity-settled; if counterparty, compound instrument.",
+ "Modification: expense at least the original grant-date fair value.",
+ "Non-employees: fair value of goods or services received."],
+ [["Equity-settled awards are measured at...","Grant-date fair value","Vesting-date fair value","Settlement-date fair value"],
+  ["Cash-settled awards are remeasured...","At each reporting date","Only at grant","Never"]]],
+
+["IFRS 9","Financial Instruments","IFRS","Financial instruments",[
+ "Financial assets: amortised cost (hold to collect + SPPI), FVOCI (hold to collect and sell + SPPI), otherwise FVTPL.",
+ "Equity investments: FVTPL, or irrevocable election for FVOCI (no recycling to P&L).",
+ "Financial liabilities: amortised cost, unless held for trading/designated FVTPL (own credit risk changes go to OCI).",
+ "Initial measurement: fair value (plus transaction costs unless FVTPL).",
+ "Impairment (expected credit loss): Stage 1 12-month ECL; Stage 2 lifetime ECL after significant increase in credit risk; Stage 3 lifetime ECL, interest on net amount.",
+ "Trade receivables: simplified approach, always lifetime ECL.",
+ "Derecognise asset when rights expire or substantially all risks and rewards transferred.",
+ "Hedge accounting: fair value hedge, cash flow hedge (effective portion to OCI), net investment hedge; needs economic relationship and documentation."],
+ [["Stage 2 assets carry...","Lifetime expected credit losses","12-month ECL","No loss allowance"],
+  ["Gains on equity investments elected FVOCI are...","Never recycled to P&L","Recycled on sale","Recycled annually"]]],
+
+["IAS 32","Financial Instruments: Presentation","IAS","Financial instruments",[
+ "Liability if contractual obligation to deliver cash/financial assets or exchange on unfavourable terms.",
+ "Mandatorily redeemable preference shares are liabilities; interest/dividends go to P&L as finance cost.",
+ "Compound instruments (e.g. convertible bond): liability = PV of cash flows at market rate for similar non-convertible debt; equity = residual.",
+ "Treasury shares deducted from equity; no gain/loss in P&L.",
+ "Offset only if legal right and intention to settle net."],
+ [["The equity component of a convertible bond is...","The residual after measuring the liability","Its fair value at issue","Zero"],
+  ["Mandatorily redeemable preference shares are...","Financial liabilities","Equity","Reserves"]]],
+
+["IFRS 7","Financial Instruments: Disclosures","IFRS","Financial instruments",[
+ "Disclose significance of financial instruments and nature/extent of risks.",
+ "Risks: credit, liquidity, market (currency, interest rate, other price).",
+ "Sensitivity analysis for market risk; maturity analysis for liquidity risk.",
+ "Disclose categories, fair value hierarchy, ECL allowances and hedge accounting information."],
+ [["Which is NOT a risk covered by IFRS 7?","Operational risk","Credit risk","Liquidity risk"],
+  ["Market risk includes...","Currency and interest rate risk","Customer default only","Fraud"]]],
+
+["IFRS 10","Consolidated Financial Statements","IFRS","Groups",[
+ "Control = power over investee + exposure to variable returns + ability to use power to affect returns.",
+ "Consolidate a subsidiary from acquisition date to loss of control.",
+ "Uniform accounting policies and reporting date (or adjust for gap up to 3 months).",
+ "Potential voting rights considered if substantive; control possible below 50% (de facto control).",
+ "Loss of control: derecognise assets, liabilities, NCI; retained interest at fair value; gain or loss in P&L.",
+ "Change in ownership without loss of control: equity transaction, no gain or loss.",
+ "Investment entities measure subsidiaries at FVTPL (exception)."],
+ [["Which is NOT an element of control?","Owning 50% of shares","Power over the investee","Exposure to variable returns"],
+  ["Increasing stake from 60% to 80% (control retained) is...","An equity transaction","A gain in P&L","A revaluation"]]],
+
+["IFRS 3","Business Combinations","IFRS","Groups",[
+ "Acquisition method: identify acquirer, acquisition date, recognise identifiable assets and liabilities at fair value, NCI and goodwill.",
+ "Goodwill = consideration transferred + NCI + FV of previously held interest - FV of net identifiable assets.",
+ "NCI at fair value (full goodwill) or proportionate share of net assets (choice per acquisition).",
+ "Acquisition costs are expensed; share issue costs reduce equity.",
+ "Contingent consideration at fair value at acquisition; later changes to a liability go to P&L; equity classified not remeasured.",
+ "Bargain purchase: reassess, then gain in P&L.",
+ "Step acquisition: remeasure previous interest to fair value with gain or loss in P&L.",
+ "Measurement period: up to 12 months to finalise provisional amounts."],
+ [["Acquisition-related costs are...","Expensed","Added to goodwill","Deducted from equity"],
+  ["Full goodwill method measures NCI at...","Fair value","Share of net assets","Nominal value"]]],
+
+["IFRS 11","Joint Arrangements","IFRS","Groups",[
+ "Joint arrangement = contractual arrangement with joint control (unanimous consent).",
+ "Joint operation: rights to assets and obligations for liabilities. Recognise own share of assets, liabilities, revenue, expenses.",
+ "Joint venture: rights to net assets. Use the equity method (IAS 28).",
+ "Classify using legal form, contractual terms and other facts and circumstances.",
+ "Joint operator selling to the joint operation: recognise gain only to the extent of others' interests."],
+ [["A joint venture is accounted for using...","The equity method","Proportionate consolidation","Cost only"],
+  ["In a joint operation each party recognises...","Its share of assets and liabilities","Net investment only","Nothing"]]],
+
+["IFRS 12","Disclosure of Interests in Other Entities","IFRS","Groups",[
+ "Covers subsidiaries, joint arrangements, associates and unconsolidated structured entities.",
+ "Disclose significant judgements (control, significant influence, joint control).",
+ "Subsidiaries with material NCI: summarised financial information.",
+ "Disclose restrictions on access to assets and risks from structured entities."],
+ [["IFRS 12 requires summarised information for...","Subsidiaries with material NCI","All suppliers","Only associates"],
+  ["IFRS 12 covers...","Interests in subsidiaries, associates, joint arrangements","Only subsidiaries","Only leases"]]],
+
+["IAS 27","Separate Financial Statements","IAS","Groups",[
+ "Separate statements are additional to (or instead of) consolidated statements.",
+ "Investments in subsidiaries, associates, JVs at cost, IFRS 9, or equity method.",
+ "Same treatment for each category of investment.",
+ "Dividends recognised in P&L when right to receive is established.",
+ "Disclose why prepared and a list of significant investments."],
+ [["Which is NOT allowed for a subsidiary investment in separate FS?","Proportionate consolidation","Cost","Equity method"],
+  ["Dividends from a subsidiary in separate FS go to...","Profit or loss","Reduce the investment","Equity"]]],
+
+["IAS 28","Investments in Associates and Joint Ventures","IAS","Groups",[
+ "Significant influence (presumed at 20% or more voting power, not control).",
+ "Equity method: cost + share of post-acquisition profit and OCI - dividends received - impairment.",
+ "Unrealised profits on transactions eliminated to the extent of investor's interest.",
+ "Impairment tested under IAS 36 on the whole investment.",
+ "Stop recognising losses when investment reaches zero (unless obligations).",
+ "Loss of significant influence: remeasure retained interest to fair value, gain or loss in P&L.",
+ "Consolidated P&L shows share of associate profit as one line; no line-by-line consolidation."],
+ [["Dividends from an associate...","Reduce the investment carrying amount","Are income in consolidated P&L","Increase goodwill"],
+  ["Significant influence is presumed at...","20% or more of voting power","10%","51%"]]],
+
+["IAS 21","Effects of Changes in Foreign Exchange Rates","IAS","Groups",[
+ "Functional currency = currency of the primary economic environment. Presentation currency may differ.",
+ "Transactions: initially at spot rate. Monetary items retranslated at closing rate; non-monetary at historical (or fair value date) rate.",
+ "Exchange differences on monetary items go to P&L.",
+ "Foreign operations: assets and liabilities at closing rate; income and expenses at average rate; differences go to OCI (translation reserve).",
+ "Goodwill and fair value adjustments on a foreign subsidiary are translated at closing rate.",
+ "On disposal, recycle the cumulative translation difference to P&L.",
+ "Hyperinflationary economy: restate under IAS 29 first."],
+ [["Exchange differences on translating a foreign subsidiary go to...","OCI","Profit or loss","Goodwill"],
+  ["Foreign subsidiary's goodwill is translated at...","Closing rate","Historical rate","Average rate"]]],
+
+["IAS 1","Presentation of Financial Statements","IAS","Reporting",[
+ "Complete set: statement of financial position, P&L and OCI, changes in equity, cash flows, notes (with comparatives).",
+ "Principles: fair presentation, going concern, accrual basis, materiality, consistency, no offsetting unless allowed.",
+ "Classify a liability as non-current only if there is a right at the reporting date to defer settlement for at least 12 months (covenants tested at or before the date).",
+ "OCI items split into those that will and will not be reclassified.",
+ "Extraordinary items are prohibited.",
+ "IFRS 18 will replace this presentation guidance from 2027."],
+ [["Which is NOT part of a complete set of financial statements?","Directors' report","Statement of cash flows","Statement of changes in equity"],
+  ["A liability is current if...","There is no right to defer settlement 12 months or more","It is large","It relates to tax"]]],
+
+["IAS 7","Statement of Cash Flows","IAS","Reporting",[
+ "Three categories: operating, investing, financing.",
+ "Operating: direct or indirect method (indirect starts from profit before tax).",
+ "Cash equivalents: short-term, highly liquid, insignificant risk of change in value.",
+ "Interest and dividends paid: operating or financing; received: operating or investing. Apply consistently.",
+ "Group: cash paid for acquiring a subsidiary shown net of cash acquired in investing activities.",
+ "Group: dividends paid to NCI are financing; dividends received from associates are investing.",
+ "Disclose non-cash transactions separately and reconcile liabilities from financing activities."],
+ [["Acquisition of a subsidiary (net of cash acquired) is shown in...","Investing activities","Operating activities","Financing activities"],
+  ["The indirect method starts from...","Profit before tax","Cash receipts","Revenue"]]],
+
+["IAS 8","Accounting Policies, Estimates and Errors","IAS","Reporting",[
+ "Change in accounting policy: only if required by IFRS or gives more reliable, relevant information. Apply retrospectively.",
+ "Change in accounting estimate: apply prospectively.",
+ "Prior period error: correct retrospectively (restate comparatives, third statement of financial position).",
+ "Impracticability: apply from earliest practicable date.",
+ "Accounting estimate = monetary amount subject to measurement uncertainty."],
+ [["A change in useful life is a...","Change in estimate (prospective)","Change in policy","Prior period error"],
+  ["A material prior period error is corrected...","Retrospectively","Prospectively","In OCI"]]],
+
+["IAS 10","Events after the Reporting Period","IAS","Reporting",[
+ "Adjusting: evidence of conditions existing at the reporting date (e.g. court case settled, customer insolvency, inventory sold below cost).",
+ "Non-adjusting: conditions arising after (e.g. fire, share price fall, new acquisition). Disclose if material.",
+ "Dividends declared after the reporting date are not a liability.",
+ "If going concern no longer appropriate, do not prepare on going concern basis."],
+ [["A dividend declared after year end is...","Not recognised as a liability","An adjusting event","A provision"],
+  ["A customer goes bankrupt after year end due to prior conditions. This is...","Adjusting","Non-adjusting","Ignored"]]],
+
+["IAS 24","Related Party Disclosures","IAS","Reporting",[
+ "Related parties: control, joint control, significant influence, key management personnel (KMP), close family, common control.",
+ "Disclose relationship, transactions, balances, terms and conditions.",
+ "Always disclose parent and ultimate controlling party.",
+ "KMP compensation disclosed in total and by category.",
+ "Disclose even when no price is charged."],
+ [["Which is a related party?","An entity controlled by key management","A customer","A supplier"],
+  ["KMP compensation is disclosed...","In total by category","Individually named","Not at all"]]],
+
+["IAS 33","Earnings per Share","IAS","Reporting",[
+ "Basic EPS = profit attributable to ordinary shareholders / weighted average ordinary shares.",
+ "Profit attributable: after preference dividends and NCI share.",
+ "Bonus issue: adjust retrospectively. Rights issue: bonus fraction using theoretical ex-rights price (TERP).",
+ "Diluted EPS: include potential shares (convertibles, options, warrants); add back post-tax interest saved.",
+ "Only dilutive instruments are included."],
+ [["A bonus issue is adjusted...","Retrospectively for all periods","Only from issue date","Ignored"],
+  ["Rights issues use the...","Theoretical ex-rights price","Nominal value","Book value"]]],
+
+["IAS 34","Interim Financial Reporting","IAS","Reporting",[
+ "Minimum: condensed statements of financial position, P&L/OCI, changes in equity, cash flows and selected notes.",
+ "Same accounting policies as annual statements.",
+ "Tax uses estimated average annual effective tax rate.",
+ "Materiality judged relative to the interim period.",
+ "Local regulators decide who must publish interim reports."],
+ [["Interim tax uses the...","Estimated average annual effective rate","Latest actual rate","Statutory rate"],
+  ["Who mandates interim reporting?","Local regulators","IAS 34 itself","The auditors"]]],
+
+["IFRS 1","First-time Adoption of IFRS","IFRS","Reporting",[
+ "Opening IFRS statement of financial position at transition date (start of earliest comparative period).",
+ "Apply IFRS in force at first reporting date retrospectively.",
+ "Mandatory exceptions (e.g. estimates) and optional exemptions (e.g. deemed cost, past business combinations, cumulative translation differences to zero).",
+ "Reconcile equity and profit from previous GAAP to IFRS.",
+ "Explicit and unreserved statement of IFRS compliance."],
+ [["The transition date is the...","Start of the earliest comparative period","First reporting date","End of first IFRS year"],
+  ["Which is an optional exemption?","Deemed cost","Estimates","Derecognition of assets"]]],
+
+["IFRS 8","Operating Segments","IFRS","Reporting",[
+ "Applies to entities with publicly traded securities.",
+ "Management approach: report segments as reviewed by the chief operating decision maker (CODM).",
+ "Reportable if 10% or more of revenue, profit/loss, or assets.",
+ "Reportable segments must cover at least 75% of external revenue.",
+ "Disclose profit measures, assets, reconciliations, products, geography and customers over 10% of revenue."],
+ [["A segment is reportable at what threshold?","10% of revenue, profit or assets","5%","25%"],
+  ["Segment reporting follows the...","Management approach","Legal structure","Tax structure"]]],
+
+["IFRS 17","Insurance Contracts","IFRS","Reporting",[
+ "Insurance contract: significant insurance risk transferred from policyholder.",
+ "General model: fulfilment cash flows (PV of cash flows + risk adjustment) + contractual service margin (CSM).",
+ "CSM = unearned profit, released as services are provided.",
+ "Onerous groups: loss recognised immediately.",
+ "Premium allocation approach: simplified if coverage is 1 year or less.",
+ "Variable fee approach for direct participation contracts.",
+ "Present insurance revenue, service expenses and finance income/expense separately."],
+ [["The CSM represents...","Unearned profit","Claims paid","Reinsurance cost"],
+  ["The premium allocation approach is used when coverage is...","1 year or less","Over 5 years","Unlimited"]]],
+
+["IFRS 18","Presentation and Disclosure in Financial Statements","IFRS","Reporting",[
+ "Effective 1 January 2027; replaces IAS 1 presentation rules. Check the ACCA examinable documents for your sitting.",
+ "P&L has categories: operating, investing, financing (plus income taxes and discontinued operations).",
+ "New required subtotals: operating profit and profit before financing and income taxes.",
+ "Management-defined performance measures (MPMs) disclosed in a note with reconciliation.",
+ "Stronger rules on aggregation and disaggregation of information."],
+ [["IFRS 18 introduces the new subtotal...","Operating profit","Gross margin","EBITDA"],
+  ["Management-defined performance measures are disclosed...","In a note with reconciliation","On the face of P&L only","Not at all"]]],
+
+["IFRS S1","General Requirements for Sustainability Disclosures","IFRS","Sustainability & ethics",[
+ "Disclose material information on sustainability risks and opportunities that could affect cash flows, access to finance or cost of capital.",
+ "Four pillars: governance, strategy, risk management, metrics and targets.",
+ "Same reporting entity and period as the financial statements; must be connected.",
+ "Consider SASB standards and value chain when identifying risks."],
+ [["Which is one of the four pillars?","Governance","Auditing","Taxation"],
+  ["S1 information should be relevant to...","Enterprise value (investors)","Only employees","Only regulators"]]],
+
+["IFRS S2","Climate-related Disclosures","IFRS","Sustainability & ethics",[
+ "Physical risks (floods, heat) and transition risks (policy, technology, market).",
+ "Climate resilience using scenario analysis.",
+ "Disclose Scope 1, 2 and 3 greenhouse gas emissions.",
+ "Cross-industry metrics: transition risk, physical risk, opportunities, capital deployment, internal carbon price, remuneration.",
+ "Builds on the four pillars from IFRS S1."],
+ [["Scope 3 emissions are...","Value chain emissions","Direct emissions","Purchased electricity"],
+  ["Climate resilience is assessed using...","Scenario analysis","Only budgets","Auditor opinion"]]],
+
+["MC & IR","Management Commentary and Integrated Reporting","Other","Sustainability & ethics",[
+ "IFRS Practice Statement on Management Commentary: non-mandatory guidance (unless local law requires).",
+ "Gives context: business model, strategy, resources and relationships, risks, external environment, performance and position.",
+ "Integrated Reporting (IR) explains value creation over the short, medium and long term.",
+ "Six capitals: financial, manufactured, intellectual, human, social and relationship, natural.",
+ "Guiding principles: strategic focus, connectivity, stakeholder relationships, materiality, conciseness, reliability, consistency."],
+ [["Which is one of the six capitals?","Natural capital","Share capital","Working capital"],
+  ["The Management Commentary practice statement is...","Non-mandatory guidance","A full IFRS Standard","An audit report"]]],
+
+["Ethics","Ethics and Professional Skills","Other","Sustainability & ethics",[
+ "Fundamental principles: integrity, objectivity, professional competence and due care, confidentiality, professional behaviour.",
+ "Threats: self-interest, self-review, advocacy, familiarity, intimidation.",
+ "Respond: eliminate the threat, apply safeguards, or decline/resign.",
+ "Common SBR issues: earnings management, window dressing, aggressive revenue recognition, pressure from management bonuses.",
+ "Escalate internally, seek advice, document decisions."],
+ [["Which is NOT a fundamental principle?","Profitability","Integrity","Confidentiality"],
+  ["Reviewing your own earlier work creates a...","Self-review threat","Familiarity threat","Advocacy threat"]]]
+];
+
+/* ---------- CONSOLIDATION DATA ---------- */
+var CONS=[
+["1. Control and group structure (IFRS 10)",[
+ "Subsidiary: control (power, variable returns, link). Associate: significant influence (20%+). Joint venture: joint control.",
+ "Draw group structure: parent %, date acquired, NCI %. Indirect holdings: effective interest = product of percentages.",
+ "Consolidate 100% of subsidiary's assets, liabilities, income and expenses; show NCI share separately."]],
+["2. Standard workings layout",[
+ "W1 Group structure. W2 Net assets of subsidiary (acquisition date vs reporting date, with fair value adjustments).",
+ "W3 Goodwill. W4 Non-controlling interest. W5 Consolidated retained earnings. W6 Adjustments (PUP, intra-group balances).",
+ "Consolidated SFP: add 100% assets and liabilities line by line; eliminate investment in subsidiary and subsidiary's pre-acquisition reserves."]],
+["3. Fair value adjustments and deferred tax",[
+ "At acquisition: restate subsidiary's identifiable net assets to fair value (property, inventory, intangibles, contingent liabilities).",
+ "Post-acquisition: adjust extra depreciation/amortisation each year and unwind FV adjustments.",
+ "Deferred tax on FV adjustments (IAS 12); the deferred tax reduces net assets and increases goodwill."]],
+["4. NCI",[
+ "Proportionate: NCI = NCI% x net assets at acquisition. Full goodwill: NCI = fair value at acquisition.",
+ "NCI at reporting date = NCI at acquisition + NCI% x post-acquisition change in net assets - NCI share of goodwill impairment (full goodwill method only).",
+ "NCI share of profit = NCI% x subsidiary's adjusted profit (after FV depreciation and PUP where subsidiary sold)."]],
+["5. Intra-group transactions",[
+ "Eliminate intra-group revenue and cost of sales, receivables and payables, loans and interest, dividends.",
+ "Unrealised profit in inventory (PUP): margin x inventory still held. Parent seller: adjust parent's profit. Subsidiary seller: split between parent and NCI.",
+ "Non-current assets sold within the group: eliminate profit; adjust extra depreciation.",
+ "Cash in transit and goods in transit: adjust so both sides agree before cancelling."]],
+["6. Step acquisitions (IFRS 3)",[
+ "Control gained in stages: remeasure previously held interest to fair value at control date; gain or loss in P&L.",
+ "Associate to subsidiary: recycle OCI accumulated on previous interest.",
+ "Goodwill = consideration + fair value of previous interest + NCI - FV net assets.",
+ "Further purchase after control: equity transaction. NCI adjusted; difference between consideration and NCI change goes to parent's equity."]],
+["7. Disposals",[
+ "Loss of control: gain/loss = (proceeds + FV retained interest + NCI carrying amount) - (net assets + unimpaired goodwill) + recycle OCI (e.g. translation reserve).",
+ "Retained interest: associate (equity method) or IFRS 9 investment, at fair value from date of loss of control.",
+ "Disposal without loss of control: equity transaction, no gain in P&L; adjust NCI and parent's equity.",
+ "Consolidate the subsidiary's results up to disposal date."]],
+["8. Associates and joint ventures (IAS 28)",[
+ "Equity method: cost + share of post-acquisition profit/OCI - dividends - impairment.",
+ "Group P&L: one line for share of associate profit (after tax); no line-by-line consolidation.",
+ "Downstream sales (parent to associate): eliminate parent's share of unrealised profit against the parent's inventory/profit. Upstream: reduce associate profit share and investment.",
+ "Joint venture: equity method. Joint operation: own share of assets, liabilities, income, expenses."]],
+["9. Foreign subsidiaries (IAS 21)",[
+ "Translate assets and liabilities (including goodwill and FV adjustments) at closing rate; P&L at average rate.",
+ "Equity at acquisition at historical rate; post-acquisition profits at historical (average) rates.",
+ "Exchange difference (balancing figure) goes to OCI and translation reserve; allocate part to NCI.",
+ "On disposal, recycle the cumulative reserve to P&L."]],
+["10. Group cash flow statement (IAS 7)",[
+ "Start from group profit before tax and adjust for non-cash items, associates' share of profit and working capital changes.",
+ "Acquisitions/disposals: cash consideration net of cash acquired or disposed; exclude non-cash working capital of the subsidiary from movements.",
+ "Dividends paid to NCI in financing; dividends from associates in investing.",
+ "Tax and interest paid via T-accounts (opening + expense - closing)."]],
+["11. Goodwill impairment (IAS 36)",[
+ "Test the CGU containing goodwill annually. Under proportionate method gross up goodwill to include NCI share for the test.",
+ "Loss allocated to goodwill first, then other assets pro rata.",
+ "Proportionate method: only parent's share of goodwill loss recognised. Full method: loss shared between parent and NCI.",
+ "Goodwill impairment is never reversed."]]
+];
+
+var CQ=[
+["Which is NOT part of the goodwill calculation?","Parent's share of post-acquisition profit","Consideration transferred","Fair value of net identifiable assets"],
+["Under IFRS 3, acquisition-related costs are...","Expensed to profit or loss","Added to goodwill","Deducted from equity"],
+["Parent sells inventory to subsidiary at a profit. The unrealised profit is eliminated against...","Parent's profit (all of it)","Shared with NCI","NCI only"],
+["Subsidiary sells inventory to parent. The unrealised profit adjustment is...","Split between parent and NCI","Wholly against parent","Not adjusted"],
+["Parent increases holding from 60% to 80% (control retained). This is...","An equity transaction with no P&L gain","A gain in P&L","A revaluation through OCI"],
+["Step acquisition: an associate becomes a subsidiary. The previously held interest is...","Remeasured to fair value with gain/loss in P&L","Kept at carrying amount","Remeasured through OCI"],
+["On loss of control, the retained interest is measured at...","Fair value at that date","Original cost","Share of net assets"],
+["A dividend received from an associate under the equity method...","Reduces the investment carrying amount","Is income in group P&L","Is added to goodwill"],
+["Goodwill of a foreign subsidiary is translated at...","Closing rate","Historical rate","Average rate"],
+["Under the full goodwill method, NCI at acquisition is measured at...","Fair value","Proportionate share of net assets","Nominal value"],
+["Under the proportionate method, a goodwill impairment is borne by...","Parent only","Parent and NCI","NCI only"],
+["Later fair value changes in contingent consideration classified as a liability go to...","Profit or loss","Goodwill","OCI"]
+];
+
+/* ---------- QUIZ ENGINE ---------- */
+function toQ(a,tag){return {q:a[0],c:a[1],w:a.slice(2),tag:tag||""}}
+function runQuiz(box,qs,title){
+  var i=0,score=0,wrong=[];
+  function show(){
+    if(i>=qs.length){return finish()}
+    var it=qs[i],opts=shuffle([it.c].concat(it.w));
+    box.innerHTML='<div class="qhead"><span>Question '+(i+1)+' of '+qs.length+'</span><span>Score '+score+'</span></div>'+
+      '<div class="bar"><i style="width:'+(i/qs.length*100)+'%"></i></div>'+
+      '<h3>'+(it.tag?'<span class="tagq">'+esc(it.tag)+'</span><br>':'')+esc(it.q)+'</h3>'+
+      '<div class="opts">'+opts.map(function(o){return '<button class="opt">'+esc(o)+'</button>'}).join("")+'</div><div class="fb" id="fb"></div>';
+    var btns=box.querySelectorAll(".opt");
+    Array.prototype.forEach.call(btns,function(b){
+      b.onclick=function(){
+        Array.prototype.forEach.call(btns,function(x){x.disabled=true;if(x.textContent===it.c)x.classList.add("ok")});
+        if(b.textContent===it.c){score++}else{b.classList.add("no");wrong.push(it)}
+        var fb=box.querySelector("#fb");
+        fb.innerHTML='<button class="btn sm" id="nx">'+(i+1>=qs.length?"See result":"Next question")+'</button>';
+        box.querySelector("#nx").onclick=function(){i++;show()};
+        box.querySelector("#nx").focus();
+      };
+    });
+  }
+  function finish(){
+    var pct=Math.round(score/qs.length*100);
+    var msg=pct>=80?"Excellent. You are exam-ready on this set.":pct>=50?"Good progress. Review the missed points below.":"Keep going. Re-read the summary and try again.";
+    box.innerHTML='<div class="result"><div class="big">'+score+' / '+qs.length+'</div><p><b>'+pct+'%</b> - '+msg+'</p>'+
+      (wrong.length?'<div class="rev-list">'+wrong.map(function(w){return '<div><b>'+esc(w.q)+'</b>Answer: '+esc(w.c)+'</div>'}).join("")+'</div>':'')+
+      '<button class="btn" id="again">Try again</button></div>';
+    box.querySelector("#again").onclick=function(){i=0;score=0;wrong=[];qs=shuffle(qs);show()};
+  }
+  show();
+}
+
+/* ---------- NAV / ROUTER ---------- */
+var NAV=[["home","Home"],["standards","Standards"],["consolidation","Consolidation"],["quiz","Quiz"],["planner","Study planner"],["lectures","Lecture planner"],["about","About"]];
+function buildNav(cur){
+  document.getElementById("nav").innerHTML=NAV.map(function(n){return '<a href="#/'+n[0]+'" class="'+(n[0]===cur?"on":"")+'">'+n[1]+'</a>'}).join("");
+}
+function route(){
+  var h=location.hash.replace(/^#\/?/,"")||"home";
+  var p=h.split("/"),page=p[0],arg=p[1];
+  var cur=page==="s"?"standards":page;
+  buildNav(cur);
+  var f={home:home,standards:standards,s:function(){std(arg)},consolidation:consolidation,quiz:quizPage,planner:function(){planPage("study")},lectures:function(){planPage("lect")},about:about}[page]||home;
+  f();
+  if(page!=="planner"&&page!=="lectures")window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+
+/* ---------- PAGES ---------- */
+function home(){
+  var nq=S.reduce(function(a,s){return a+s[5].length},0)+CQ.length;
+  app.innerHTML=
+  '<section class="hero"><div><h1>SBR, simplified.</h1>'+
+  '<p class="lead">Short, to-the-point reminders for every IFRS and IAS, the group accounting workings, plus quizzes and a 60-day plan for ACCA Strategic Business Reporting.</p>'+
+  '<div class="cta"><a class="btn" href="#/standards">Browse standards</a><a class="btn ghost" href="#/quiz">Take a quiz</a></div></div>'+
+  '<div class="tacc" aria-label="Goodwill formula"><div class="tt">Goodwill at acquisition</div>'+
+  '<div class="tgrid"><div class="tl"><span>Consideration transferred</span><span>+ Non-controlling interest</span><span>+ Fair value of previously held interest</span></div>'+
+  '<div><span>- Fair value of net identifiable assets</span></div></div>'+
+  '<div class="tb">= Goodwill (balancing figure)</div><div class="tnote">Quick reminder from the Consolidation section.</div></div></section>'+
+  '<div class="stats"><span><b>'+S.length+'</b>topics</span><span><b>'+nq+'</b>quiz questions</span><span><b>60</b>day plan with 15 days revision</span></div>'+
+  '<div class="tiles">'+
+  tile("standards","Standards","Every IFRS and IAS as short points, one page each.")+
+  tile("consolidation","Consolidation","Goodwill, NCI, PUP, step acquisitions, disposals, associates.")+
+  tile("quiz","Quiz","Mixed practice by IFRS, IAS or consolidation.")+
+  tile("planner","Study planner","Two months, day by day, with checkboxes.")+
+  tile("lectures","Lecture planner","When to watch each lecture, plus a revision sprint.")+
+  tile("about","About","Who made this and how to use it.")+
+  '</div><div class="strip"><b>Last 15 days:</b> the plan keeps days 46 to 60 for revision, timed mocks and a final quiz sprint.</div>';
+}
+function tile(h,t,d){return '<a class="tile" href="#/'+h+'"><h3>'+t+'</h3><p>'+d+'</p></a>'}
+
+var F={g:"All",q:""};
+function standards(){
+  var gs=["All"].concat(S.map(function(s){return s[3]}).filter(function(v,i,a){return a.indexOf(v)===i}));
+  app.innerHTML='<h1 class="ph">Standards</h1><p class="sub">Tap any standard for key points and a quick quiz. A tick shows the ones you have marked as revised.</p>'+
+    '<input id="q" class="search" type="search" placeholder="Search e.g. IFRS 16, leases, goodwill" value="'+esc(F.q)+'" aria-label="Search standards">'+
+    '<div class="chips" id="chips"></div><div class="list" id="list"></div>';
+  function draw(){
+    var rev=store.get("sbr_rev",{}),q=F.q.toLowerCase().trim();
+    document.getElementById("chips").innerHTML=gs.map(function(g){return '<button class="chip'+(g===F.g?" on":"")+'" data-g="'+esc(g)+'">'+esc(g)+'</button>'}).join("");
+    var items=S.filter(function(s){
+      if(F.g!=="All"&&s[3]!==F.g)return false;
+      if(!q)return true;
+      return (s[0]+" "+s[1]+" "+s[3]+" "+s[4].join(" ")).toLowerCase().indexOf(q)>-1;
+    });
+    document.getElementById("list").innerHTML=items.length?items.map(function(s){
+      var id=sid(s[0]);
+      return '<a class="row'+(rev[id]?" rev":"")+'" href="#/s/'+id+'"><span class="tab">'+esc(s[0])+'</span><span class="rt"><b>'+esc(s[1])+'</b><small>'+esc(s[3])+'</small></span><span class="tick">&#10003;</span></a>';
+    }).join(""):'<div class="empty">No standard matches. Try another word or choose All.</div>';
+    Array.prototype.forEach.call(document.querySelectorAll("#chips .chip"),function(b){b.onclick=function(){F.g=b.getAttribute("data-g");draw()}});
+  }
+  document.getElementById("q").oninput=function(e){F.q=e.target.value;draw()};
+  draw();
+}
+
+function std(id){
+  var idx=-1;S.forEach(function(s,i){if(sid(s[0])===id)idx=i});
+  if(idx<0){return standards()}
+  var s=S[idx],rev=store.get("sbr_rev",{});
+  var prev=S[idx-1],next=S[idx+1];
+  app.innerHTML='<a class="back" href="#/standards">&larr; All standards</a>'+
+   '<div class="shead"><span class="tab">'+esc(s[0])+'</span><div><h1 class="ph" style="font-size:clamp(24px,4.5vw,34px)">'+esc(s[1])+'</h1><span class="badge">'+esc(s[3])+'</span></div></div>'+
+   '<div class="card"><h2>Key points</h2><ul class="pts">'+s[4].map(function(p){return '<li>'+esc(p)+'</li>'}).join("")+'</ul></div>'+
+   '<div class="actions"><button class="btn ghost sm" id="rv"></button></div>'+
+   '<div class="card quiz"><h2>Quick quiz</h2><div id="qz"></div></div>'+
+   '<div class="pn"><span>'+(prev?'<a href="#/s/'+sid(prev[0])+'">&larr; '+esc(prev[0])+'</a>':'')+'</span><span>'+(next?'<a href="#/s/'+sid(next[0])+'">'+esc(next[0])+' &rarr;</a>':'')+'</span></div>';
+  var b=document.getElementById("rv");
+  function lab(){b.textContent=store.get("sbr_rev",{})[id]?"Marked as revised (tap to undo)":"Mark as revised"}
+  b.onclick=function(){var r=store.get("sbr_rev",{});if(r[id])delete r[id];else r[id]=true;store.set("sbr_rev",r);lab()};
+  lab();
+  runQuiz(document.getElementById("qz"),s[5].map(function(a){return toQ(a)}),s[0]);
+}
+
+function consolidation(){
+  app.innerHTML='<h1 class="ph">Consolidation</h1><p class="sub">Group accounting reminders for SBR: IFRS 3, IFRS 10, IAS 28, IAS 21, IAS 7 and IAS 36 in group context. Tap a heading to open it.</p>'+
+   '<div class="formula"><h3>Formulas to remember</h3>'+
+   '<code>Goodwill = Consideration + NCI + Previous interest at FV - FV of net assets</code>'+
+   '<code>NCI = NCI at acquisition + NCI% x post-acq change in net assets - NCI share of impairment</code>'+
+   '<code>Group RE = Parent RE + Parent% x subsidiary post-acq profit - parent share of impairment - parent share of PUP</code>'+
+   '<code>Disposal gain = Proceeds + FV retained + NCI - (net assets + goodwill) + OCI recycled</code></div>'+
+   CONS.map(function(c,i){return '<details'+(i===0?" open":"")+'><summary>'+esc(c[0])+'</summary><ul class="pts">'+c[1].map(function(p){return '<li>'+esc(p)+'</li>'}).join("")+'</ul></details>'}).join("")+
+   '<div class="card quiz" style="margin-top:18px"><h2>Consolidation quiz</h2><div id="qz"></div></div>';
+  runQuiz(document.getElementById("qz"),shuffle(CQ).slice(0,8).map(function(a){return toQ(a)}));
+}
+
+var QF={f:"All",n:10};
+function pool(f){
+  var a=[];
+  if(f==="All"||f==="Consolidation"){CQ.forEach(function(q){a.push(toQ(q,"Consolidation"))})}
+  if(f!=="Consolidation"){S.forEach(function(s){if(f==="All"||s[2]===f){s[5].forEach(function(q){a.push(toQ(q,s[0]))})}})}
+  return a;
+}
+function quizPage(){
+  app.innerHTML='<h1 class="ph">Quiz</h1><p class="sub">Choose a set and test yourself. Every set is shuffled each time.</p>'+
+   '<div class="card"><h2>Set up</h2><div class="chips" id="fc"></div><div class="chips" id="nc"></div><button class="btn" id="go">Start quiz</button></div><div class="card quiz" id="box" style="display:none"></div>';
+  function draw(){
+    document.getElementById("fc").innerHTML=["All","IFRS","IAS","Other","Consolidation"].map(function(f){return '<button class="chip'+(QF.f===f?" on":"")+'" data-f="'+f+'">'+(f==="All"?"All topics":f==="Other"?"Framework and ethics":f)+'</button>'}).join("");
+    document.getElementById("nc").innerHTML=[10,20].map(function(n){return '<button class="chip'+(QF.n===n?" on":"")+'" data-n="'+n+'">'+n+' questions</button>'}).join("");
+    Array.prototype.forEach.call(document.querySelectorAll("#fc .chip"),function(b){b.onclick=function(){QF.f=b.getAttribute("data-f");draw()}});
+    Array.prototype.forEach.call(document.querySelectorAll("#nc .chip"),function(b){b.onclick=function(){QF.n=+b.getAttribute("data-n");draw()}});
+  }
+  draw();
+  document.getElementById("go").onclick=function(){
+    var qs=shuffle(pool(QF.f)).slice(0,QF.n),box=document.getElementById("box");
+    box.style.display="block";runQuiz(box,qs);box.scrollIntoView({behavior:"smooth",block:"start"});
+  };
+}
+
+/* ---------- PLANNERS ---------- */
+var PLAN=[
+["L","Conceptual Framework",["CF"]],
+["L","IAS 1 and IAS 8",["IAS 1","IAS 8"]],
+["L","IFRS 15: five-step model",["IFRS 15"]],
+["L","IFRS 15: contract costs, agent, licences",["IFRS 15"]],
+["L","IAS 2 and IAS 16",["IAS 2","IAS 16"]],
+["L","IAS 23, IAS 20 and IAS 40",["IAS 23","IAS 20","IAS 40"]],
+["C","Catch-up and quiz on days 1 to 6",[]],
+["L","IAS 36 impairment",["IAS 36"]],
+["L","IAS 38 and IAS 41",["IAS 38","IAS 41"]],
+["L","IFRS 16: lessee accounting",["IFRS 16"]],
+["L","IFRS 16: lessor, sale and leaseback",["IFRS 16"]],
+["L","IFRS 5 and IAS 10",["IFRS 5","IAS 10"]],
+["L","IAS 37 provisions",["IAS 37"]],
+["C","Catch-up and quiz on days 8 to 13",[]],
+["L","IAS 12 deferred tax",["IAS 12"]],
+["L","IAS 19 employee benefits",["IAS 19"]],
+["L","IFRS 2 share-based payment",["IFRS 2"]],
+["L","IFRS 9: classification and measurement",["IFRS 9"]],
+["L","IFRS 9: ECL and hedging",["IFRS 9"]],
+["L","IAS 32 and IFRS 7",["IAS 32","IFRS 7"]],
+["C","Catch-up and quiz on days 15 to 20",[]],
+["L","IFRS 13 and IAS 21 (transactions)",["IFRS 13","IAS 21"]],
+["L","IFRS 10 and IFRS 3: goodwill",["IFRS 10","IFRS 3"]],
+["L","Fair value adjustments, NCI, PUP, intra-group",["CONS"]],
+["L","Step acquisitions and contingent consideration",["IFRS 3","CONS"]],
+["L","Disposals and changes in ownership",["IFRS 10","CONS"]],
+["L","IAS 28 and IFRS 11",["IAS 28","IFRS 11"]],
+["C","Catch-up plus first full group question",["CONS"]],
+["L","IAS 21: foreign subsidiaries",["IAS 21"]],
+["L","IAS 7 and group cash flows",["IAS 7"]],
+["L","Deferred tax and impairment in groups",["IAS 12","IAS 36"]],
+["L","Full consolidation practice question",["CONS"]],
+["L","IAS 24 and IFRS 8",["IAS 24","IFRS 8"]],
+["L","IAS 33 and IAS 34",["IAS 33","IAS 34"]],
+["C","Catch-up and quiz on days 22 to 34",[]],
+["L","IFRS 1 and IFRS 12",["IFRS 1","IFRS 12"]],
+["L","IFRS 17 insurance contracts",["IFRS 17"]],
+["L","IFRS 18 and management commentary",["IFRS 18","MC & IR"]],
+["L","IFRS S1 and S2 sustainability",["IFRS S1","IFRS S2"]],
+["L","Ethics and professional skills",["Ethics"]],
+["P","Timed question 1: group accounts",["CONS"]],
+["C","Catch-up and fix weak spots",[]],
+["P","Timed questions 2 and 3: single entity and reporting",[]],
+["L","Current issues and weakest topics",[]],
+["C","Buffer day: finish anything unfinished",[]],
+["R","Revise Framework, IAS 1, IAS 8, IFRS 15",["CF","IAS 1","IAS 8","IFRS 15"]],
+["R","Revise assets: IAS 16, 36, 38, 40, 41",["IAS 16","IAS 36","IAS 38","IAS 40","IAS 41"]],
+["R","Revise IFRS 16 and IFRS 5",["IFRS 16","IFRS 5"]],
+["R","Revise liabilities: IAS 37, 12, 19",["IAS 37","IAS 12","IAS 19"]],
+["R","Revise financial instruments and IFRS 13",["IFRS 9","IAS 32","IFRS 7","IFRS 13"]],
+["R","Revise IFRS 2 and IAS 21",["IFRS 2","IAS 21"]],
+["R","Revise consolidation core: IFRS 3 and IFRS 10",["IFRS 3","IFRS 10","CONS"]],
+["R","Revise consolidation advanced: step, disposal, associates",["CONS","IAS 28"]],
+["R","Revise group cash flow and foreign subsidiaries",["IAS 7","IAS 21"]],
+["P","Mock exam 1 (3 hours 15 minutes, timed)",[]],
+["R","Mark mock 1 and fix weak areas",[]],
+["R","Revise reporting: IAS 24, 33, 34, IFRS 1, 8, 12, 17, 18",["IAS 24","IAS 33","IAS 34","IFRS 18"]],
+["R","Revise sustainability, ethics, management commentary",["IFRS S1","IFRS S2","Ethics","MC & IR"]],
+["P","Mock exam 2 (3 hours 15 minutes, timed)",[]],
+["R","Final day: quiz sprint, formulae, early night",[]]
+];
+var PL={L:"Learn",C:"Catch-up",R:"Revision",P:"Practice"};
+var TASK={
+ L:"Read the summary page, do the quiz, then attempt one exam-style question.",
+ C:"Finish anything pending, redo quiz mistakes, write a one-page summary from memory.",
+ R:"Read the summary pages, retake quizzes, write one timed answer (1.95 minutes per mark).",
+ P:"Sit it under exam conditions (about 1.95 minutes per mark), then mark honestly and list errors."
+};
+var LEC={
+ L:"Watch the lecture (about 2 to 3 hours at 1.25x). Pause to note key points, then take the quiz.",
+ C:"Watch any lecture you missed this week. Aim to be fully caught up by the end of today.",
+ R:"Rewatch only the weak parts (about 1 hour at 1.5x). Do not start new material.",
+ P:"No new lecture. Afterwards, review the examiner-style solution and rewatch the related lecture part."
+};
+function pad(n){return n<10?"0"+n:""+n}
+function iso(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
+function parse(s){var p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2])}
+function addDays(d,n){var x=new Date(d.getTime());x.setDate(x.getDate()+n);return x}
+var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function fmt(d){return DOW[d.getDay()]+" "+d.getDate()+" "+MON[d.getMonth()]}
+function getStart(){return store.get("sbr_start",iso(new Date()))}
+function tagLinks(c){return c.length?'<span class="tags">'+c.map(function(x){return x==="CONS"?'<a href="#/consolidation">Consolidation</a>':'<a href="#/s/'+sid(x)+'">'+esc(x)+'</a>'}).join("")+'</span>':""}
+
+function planPage(kind){
+  var key=kind==="study"?"sbr_study":"sbr_lect";
+  var st=parse(getStart()),done=store.get(key,{}),today=iso(new Date());
+  var title=kind==="study"?"60-day study planner":"Lecture watching planner";
+  var sub=kind==="study"?"45 days of learning, then the last 15 days for revision and mocks. Tick each day when done.":"Which lecture to watch each day, with catch-up days and a final revision sprint. Tick each day when done.";
+  var html='<h1 class="ph">'+title+'</h1><p class="sub">'+sub+'</p>'+
+   '<div class="ctl"><label>Start date<input type="date" id="sd" value="'+getStart()+'"></label><label>Or set exam date (plan counts back)<input type="date" id="ed" value="'+store.get("sbr_exam","")+'"></label></div>'+
+   '<div class="prog"><div class="bar"><i id="pb"></i></div><span id="pt"></span></div>';
+  if(kind==="lect")html+='<div class="tip">Tip: take the quiz on each standard page right after the lecture. It locks the knowledge in while it is fresh.</div>';
+  PLAN.forEach(function(d,i){
+    if(i<45&&i%7===0)html+='<h2 class="wk">Week '+(i/7+1)+'</h2>';
+    if(i===45)html+='<h2 class="wk rv">Last 15 days: revision sprint<small>'+fmt(addDays(st,45))+' to '+fmt(addDays(st,59))+'</small></h2>';
+    var dt=addDays(st,i),isT=iso(dt)===today;
+    var text=kind==="study"?TASK[d[0]]:LEC[d[0]];
+    var head=kind==="study"?d[1]:(d[0]==="L"?"Lecture: ":d[0]==="R"?"Rewatch: ":"")+d[1];
+    html+='<label class="day'+(done[i]?" done":"")+(isT?" today":"")+'"><input type="checkbox" data-i="'+i+'"'+(done[i]?" checked":"")+'>'+
+     '<span class="dn"><b>Day '+(i+1)+'</b><small>'+fmt(dt)+'</small></span>'+
+     '<span class="dc"><span><span class="pb '+d[0]+'">'+PL[d[0]]+'</span>'+(isT?'<span class="now">Today</span>':'')+'</span><strong>'+esc(head)+'</strong><span class="txt">'+esc(text)+'</span>'+tagLinks(d[2])+'</span></label>';
+  });
+  app.innerHTML=html;
+  function prog(){
+    var n=0;for(var k in done){if(done[k])n++}
+    document.getElementById("pb").style.width=(n/PLAN.length*100)+"%";
+    document.getElementById("pt").textContent=n+" of "+PLAN.length+" days";
+  }
+  prog();
+  Array.prototype.forEach.call(app.querySelectorAll(".day input"),function(c){
+    c.onchange=function(){
+      var i=c.getAttribute("data-i");
+      if(c.checked)done[i]=true;else delete done[i];
+      store.set(key,done);c.parentNode.classList.toggle("done",c.checked);prog();
+    };
+  });
+  document.getElementById("sd").onchange=function(e){if(e.target.value){store.set("sbr_start",e.target.value);store.set("sbr_exam","");planPage(kind)}};
+  document.getElementById("ed").onchange=function(e){
+    if(e.target.value){store.set("sbr_exam",e.target.value);store.set("sbr_start",iso(addDays(parse(e.target.value),-59)));planPage(kind)}
+  };
+  var t=app.querySelector(".day.today");if(t&&t.getBoundingClientRect().top>window.innerHeight)t.scrollIntoView({block:"center"});
+}
+
+function about(){
+  app.innerHTML='<h1 class="ph">About</h1>'+
+  '<div class="card" style="margin-top:18px"><h2>About this site</h2>'+
+  '<p><b>SBR Simplified</b> is a free website made by <b>Hisham Rahman, ACCA finalist</b>. It helps ACCA Strategic Business Reporting students recall each IFRS and IAS quickly, without wading through long notes.</p>'+
+  '<p>Every standard has a short list of key points and a quiz. There is also a consolidation section, a 60-day study planner and a lecture watching planner with the last 15 days reserved for revision.</p></div>'+
+  '<div class="card"><h2>How to use it</h2><ul class="pts">'+
+  '<li>Set your start date (or exam date) in either planner. Both planners share it.</li>'+
+  '<li>Watch the lecture, read the standard page, then take its quiz.</li>'+
+  '<li>Use Mark as revised on standard pages to track what you have covered.</li>'+
+  '<li>In the last 15 days, use the Quiz page and the timed mocks.</li></ul></div>'+
+  '<div class="card"><h2>Please note</h2><p>These are short reminders, not full study material. Always check the official ACCA syllabus, examinable documents and the IFRS text, especially for newer standards such as IFRS 18 and the sustainability standards. Your ticks and dates are saved in this browser only.</p></div>';
+}
+
+/* ---------- theme ---------- */
+(function(){
+  var t=null;try{t=localStorage.getItem("sbr_theme")}catch(e){}
+  if(t)document.documentElement.setAttribute("data-theme",t);
+  document.getElementById("theme").onclick=function(){
+    var cur=document.documentElement.getAttribute("data-theme");
+    if(!cur)cur=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+    var nx=cur==="dark"?"light":"dark";
+    document.documentElement.setAttribute("data-theme",nx);
+    try{localStorage.setItem("sbr_theme",nx)}catch(e){}
+  };
+})();
+route();
+</script>
+</body>
+</html>
